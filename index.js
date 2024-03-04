@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cors = require('cors')
 const PORT = 3000;
 
 // Static dosyaları sunmak için dizin yolu
+app.use(cors());
 app.use(express.static('public')); // Frontend dosyaları için
-app.use('/', express.static(path.join(__dirname, 'output1'))); // HLS dosyaları için
+app.use('/output1', express.static('output1'));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));

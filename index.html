@@ -4,11 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Stream</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
     <video id="videoPlayer" controls>
-        <source src="output1/video_stream.m3u8" type="application/vnd.apple.mpegurl">
         Tarayıcınız video tagını desteklemiyor.
     </video>
+    <script>
+        var video = document.getElementById('videoPlayer');
+        if(Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource('/output1/video_stream.m3u8');
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'output1/video_stream.m3u8';
+            video.addEventListener('loadedmetadata',function() {
+                video.play();
+            });
+        }
+    </script>
 </body>
 </html>
