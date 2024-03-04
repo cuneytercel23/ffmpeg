@@ -1,4 +1,5 @@
 1- Pc'ye ffmpeg kuruyoruz(npm olarak değil bilgisayara kuruyoruz heee).
-2- split.js ile hls(ts) formatında, videoyu istediğimiz şekilde parçalıyor. ve output1 klasöründe tutuyor.
-3- split-with-quality.js ile aynı formatta videoyu 480p 720p olarak ve original olarak kaydediyor. output2 klasöründe tutuyor.
+2- split.js ile hls(ts) formatında, videoyu istediğimiz şekilde parçalıyor. ve output1 klasöründe(gitignore'da gizli) tutuyor.
+3- split-with-quality.js ile aynı formatta videoyu 480p 720p olarak ve original olarak kaydediyor. output2(gitignore'da gizli) klasöründe tutuyor.
 4- index.js'i videostream nasıl yapıyor ona bakmak için devam ediyorum. Normalde, 2 ve 3. maddelerde video bölme işlemi yapılıyor. node split.js ve node split-with-quality.js yaparak dene knk
+5- index.html'e hls player kısımına bizim m3u8 pathini verince stream ediyor kendiliğinden.
