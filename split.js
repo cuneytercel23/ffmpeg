@@ -17,6 +17,7 @@ const fs = require("fs");
  * @param {string} outputName - Oluşturulacak HLS playlist dosyasının adı (uzantısız)
  */
 function convertToHLS(sourcePath, outputDirectory, outputName) {
+  const startTime = Date.now();
   // Çıktı dizininin var olup olmadığını kontrol et, yoksa oluştur
   if (!fs.existsSync(outputDirectory)) {
     fs.mkdirSync(outputDirectory, { recursive: true });
@@ -33,11 +34,13 @@ function convertToHLS(sourcePath, outputDirectory, outputName) {
       "-f hls", // Çıktı formatını HLS olarak ayarlar
     ])
     .output(outputPath)
-    .on("end", () => console.log("HLS conversion is finished.")) 
+    .on("end", () => { const endTime = Date.now(); // İşlem bitiş zamanını kaydet
+    const durationInSeconds = (endTime - startTime) / 1000; // İşlem süresini hesapla
+    console.log(`HLS conversion is finished in ${durationInSeconds} seconds.`);}) 
     .on("error", (err) => console.error("An error occurred: ", err))
     .run();
 }
 
 // Fonksiyonu kullanma örneği
 // NOT: 'sourcePath', 'outputDirectory' ve 'ffmpegPath', 'ffprobePath' yollarını güncelleyin
-convertToHLS("video.mp4", "./output1", "video_stream");
+convertToHLS("uzunvideo.mp4", "./output3", "video_stream");
